@@ -1,6 +1,6 @@
 # Spring boot / JPA / AWS / Mustache / Travis / TDD / CI,CD / MariaDB
 
-## 스프링부트와 AWS로 혼자 구현하는 웹 서비스
+## 스프링부트와 AWS로 혼자 구현하는 웹 서비스 참조
 
 -------------------------------------------------
 
@@ -19,7 +19,7 @@
 
 ![image](https://user-images.githubusercontent.com/35808172/117843678-fc81f000-b2b9-11eb-9d4c-8ee64ede8567.png)
 
-# 전체 구조도
+# 전체 구조도 (2021.05.12)
 1. Java, Spring boot를 이용하여 간단한 Web application을 만든다.
 2. TDD로 만들며 Github에 commit / push 한다.
 3. Travis 를 이용하여 Continuous Integration 구축한다.
