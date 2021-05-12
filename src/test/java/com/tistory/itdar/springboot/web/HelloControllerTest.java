@@ -34,4 +34,22 @@ public class HelloControllerTest {
                 .andExpect(status().isOk())             // header status 검증 (200, 404, 500 등)
                 .andExpect(content().string(hello));    // content (응답 본문) 검증
     }
+
+    @Test
+    public void Return_404Page_Test() throws Exception {
+        mvc.perform(get("/not"))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    public void ReturnSuccessfulPageTest() throws Exception {
+        mvc.perform(get("/hello"))
+                .andExpect(status().is2xxSuccessful());
+    }
+
+    @Test
+    public void ReturnClientErrorPageTest() throws Exception {
+        mvc.perform(get("/hell"))
+                .andExpect(status().is4xxClientError());
+    }
 }
