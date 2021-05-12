@@ -1,6 +1,5 @@
 package com.tistory.itdar.springboot.web;
 
-import com.tistory.itdar.springboot.HelloController;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,9 +7,9 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 // 테스트 진행할 때, JUnit에 내장된 실행자 외 다른 실행자 실행, 여기서는 SpringRunner 스프링 실행자 실행
 // 즉, 스프링 부트 테스트와 JUnit 사이에서 연결자 역할
@@ -33,6 +32,21 @@ public class HelloControllerTest {
         mvc.perform(get("/hello"))
                 .andExpect(status().isOk())             // header status 검증 (200, 404, 500 등)
                 .andExpect(content().string(hello));    // content (응답 본문) 검증
+    }
+
+    @Test
+    public void helloDto가_리턴된다() throws Exception {
+        String name = "hello";
+        int amount = 1000;
+
+        mvc.perform(get("/hello/dto")
+                .param("name", name)    // param으로 API테스트 할 때 사용될 요청 파라미터 설정함. 단, 값은 String만 허용됨.
+                .param("amount", String.valueOf(amount)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name", is(name)))       // jsonPath:
+                .andExpect(jsonPath("$.amount", is(amount)));  // json 응답값을 필드별로 검증할 수 있는 메서드로,
+                                                                        // $ 기준으로 필드명을 명시한다.
+                                                                        // 여기에서는, name, amount
     }
 
     @Test
