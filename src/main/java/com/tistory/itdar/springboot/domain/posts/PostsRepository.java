@@ -10,5 +10,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * Entity class 와 Entity repository는 함께 위치해야함 -> 도메인 패키지에서 함께 관리함.
  */
 public interface PostsRepository extends JpaRepository<Posts, Long> {
+    // 인터페이스 생성 후, JpaRepository<Entity 클래스, PK 타입>를 상속하면 기본적인 CRUD 메서드 자동 생성
 
 }
