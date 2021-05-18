@@ -2,11 +2,13 @@ package com.tistory.itdar.springboot;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.SpringApplication;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 /**
  * Main class
  * SpringBootApplication 어노테이션 위치부터 설정을 읽어간다.
  */
+@EnableJpaAuditing
 @SpringBootApplication
 public class Application {
 

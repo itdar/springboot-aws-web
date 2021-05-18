@@ -1,5 +1,6 @@
 package com.tistory.itdar.springboot.domain.posts;
 
+import com.tistory.itdar.springboot.domain.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,7 +11,7 @@ import javax.persistence.*;
 @Getter             // Getter와 달리 엔티티클래스에서는 Setter은 만들지 않고, 별도로 목적/의도에 맞는 메서드 생성함
 @NoArgsConstructor  // 기본생성자 자동추가
 @Entity             // 엔티티클래스는 DB테이블과 매칭될 클래스, JPA사용하면 DB에 실제 쿼리 날리기보다는 엔티티클래스 수정해서 작업
-public class Posts {
+public class Posts extends BaseTimeEntity {
     // 엔티티클래스는, 기본값으로 카멜케이스 이름을 언더스코어 네이밍으로 테이블 이름 매칭
     // e.g. SalesManager.java -> sales_manager table
 
