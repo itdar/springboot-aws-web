@@ -39,7 +39,7 @@
             {{#posts}}  <!-- postsService.findAllDesc() 의 결과로 indexController에서 넘겨받음 (PostsListResponseDto)-->
                 <tr>
                     <td>{{id}}</td>
-                    <td><a href="/posts/update/{{id}}">{{title}}</a></td>
+                    <td><a href="/posts/update/{{id}}">{{title}}</a></td>   <!-- 타이틀에 a태그를 추가한다, 타이틀 클릭 시 해당 게시글 수정 화면으로 이동한다. -->
                     <td>{{author}}</td>
                     <td>{{modifiedDate}}</td>
                 </tr>
