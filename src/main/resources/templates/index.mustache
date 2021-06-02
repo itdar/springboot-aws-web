@@ -15,11 +15,11 @@
                 <!-- <a> 태그를 써서 글 등록 페이지로 이동하는 버튼을 생성 한다. 주소는 href -->
                 <a href="/posts/save" role="button" class="btn btn-primary">글 등록</a>
                 {{#userName}}
-                    Logged in as: <span id="user">{{userName}}</span>
-                    <a href="/logout" class="btn btn-info active" role="button">Logout</a>
+                    Logged in as: <span id="user">{{userName}}</span>   <!-- 머스테치는 if문 제공 안함. true/false 여부만 판단, 항상 최종값을 넘겨줘야함-->
+                    <a href="/logout" class="btn btn-info active" role="button">Logout</a> <!-- /logout은 스프링시큐리티에서 기본으로 제공하는 로그아웃 url -->
                 {{/userName}}
-                {{^userName}}
-                    <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">Google Login</a>
+                {{^userName}}   <!-- 머스테치에서 해당 값이 없는 경우 ^ 사용함-->
+                    <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">Google Login</a> <!-- 스프링시큐리티 기본 제공 로그인 url-->
                     <a href="/oauth2/authorization/naver" class="btn btn-secondary active" role="button">Naver Login</a>
                 {{/userName}}
             </div>
