@@ -49,21 +49,21 @@ public class HelloControllerTest {
                                                                         // 여기에서는, name, amount
     }
 
-//    @Test
-//    public void Return_404Page_Test() throws Exception {
-//        mvc.perform(get("/not"))
-//                .andExpect(status().isNotFound());
-//    }
-//
-//    @Test
-//    public void ReturnSuccessfulPageTest() throws Exception {
-//        mvc.perform(get("/hello"))
-//                .andExpect(status().is2xxSuccessful());
-//    }
-//
-//    @Test
-//    public void ReturnClientErrorPageTest() throws Exception {
-//        mvc.perform(get("/hell"))
-//                .andExpect(status().is4xxClientError());
-//    }
+    @Test
+    public void Return_404Page_Test() throws Exception {
+        mvc.perform(get("/not"))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    public void ReturnSuccessfulPageTest() throws Exception {
+        mvc.perform(get("/hello"))
+                .andExpect(status().is2xxSuccessful());
+    }
+
+    @Test
+    public void ReturnClientErrorPageTest() throws Exception {
+        mvc.perform(get("/hell"))
+                .andExpect(status().is4xxClientError());
+    }
 }
