@@ -43,7 +43,7 @@ public class PostsApiControllerTest {
 
     @Autowired
     private WebApplicationContext context;
-    
+
     private MockMvc mvc;
 
     @Before
@@ -94,33 +94,31 @@ public class PostsApiControllerTest {
     @Test
     @WithMockUser(roles="USER")
     public void Posts_수정된다_Test() throws Exception {
-        // given
+        //given
         Posts savedPosts = postsRepository.save(Posts.builder()
-                                                .title("title")
-                                                .content("content")
-                                                .author("author")
-                                                .build());
+                .title("title")
+                .content("content")
+                .author("author")
+                .build());
 
         Long updateId = savedPosts.getId();
         String expectedTitle = "title2";
         String expectedContent = "content2";
 
         PostsUpdateRequestDto requestDto = PostsUpdateRequestDto.builder()
-                                                    .title(expectedTitle)
-                                                    .content(expectedContent)
-                                                    .build();
+                .title(expectedTitle)
+                .content(expectedContent)
+                .build();
 
-        String url = "http://localhost:" + port + "/api/v1/posts/"+ updateId;
+        String url = "http://localhost:" + port + "/api/v1/posts/" + updateId;
 
-        HttpEntity<PostsUpdateRequestDto> requestEntity = new HttpEntity<>(requestDto);
+        //when
+        mvc.perform(put(url)
+                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                .content(new ObjectMapper().writeValueAsString(requestDto)))
+                .andExpect(status().isOk());
 
-        // when
-        ResponseEntity<Long> responseEntity = restTemplate.exchange(url, HttpMethod.PUT, requestEntity, Long.class);
-
-        // then
-        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(responseEntity.getBody()).isGreaterThan(0L);
-
+        //then
         List<Posts> all = postsRepository.findAll();
         assertThat(all.get(0).getTitle()).isEqualTo(expectedTitle);
         assertThat(all.get(0).getContent()).isEqualTo(expectedContent);

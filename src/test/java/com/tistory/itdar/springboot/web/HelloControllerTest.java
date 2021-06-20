@@ -1,9 +1,13 @@
 package com.tistory.itdar.springboot.web;
 
+import com.tistory.itdar.springboot.config.auth.SecurityConfig;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.FilterType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -17,13 +21,22 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 // Web(Spring MVC)에 집중할 수 있는 어노테이션으로, 선언하면 @Controller, @ControllerAdvice 등 사용 가능
 // 하지만 @Service, @Component, @Repository 등은 사용 불가
 // 여기서는 컨트롤러만 사용하기 때문에 선언함.
-@WebMvcTest(controllers = HelloController.class)
+// 추가,
+// Repository, Service, Component 는 스캔 대상이 아니라서, SecurityConfig 는 읽었지만 그에 필요한
+// CustomOAuth2UserService 는 읽을 수 없었음. 그래서 스캔 대상에 SecurityConfig 를 제거한다.
+// WebMvcTest 의 secure 옵션은 2.1부터 deprecated 됨, 사용 X
+@WebMvcTest(controllers = HelloController.class,
+        excludeFilters = {
+                @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = SecurityConfig.class)
+        }
+)
 public class HelloControllerTest {
 
     // 스프링이 관리하는 Bean을 주입 받는다.
     @Autowired
     private MockMvc mvc; // Web API 테스트할 때 사용, 스프링 MVC테스트의 시작점, 이 클래스를 통해 HTTP GET,POST 등 API 테스트.
 
+    @WithMockUser(roles="USER")
     @Test
     public void Hello가_리턴된다() throws Exception {
         String hello = "hello";
@@ -34,6 +47,7 @@ public class HelloControllerTest {
                 .andExpect(content().string(hello));    // content (응답 본문) 검증
     }
 
+    @WithMockUser(roles="USER")
     @Test
     public void helloDto가_리턴된다() throws Exception {
         String name = "hello";
@@ -49,18 +63,21 @@ public class HelloControllerTest {
                                                                         // 여기에서는, name, amount
     }
 
+    @WithMockUser(roles="USER")
     @Test
     public void Return_404Page_Test() throws Exception {
         mvc.perform(get("/not"))
                 .andExpect(status().isNotFound());
     }
 
+    @WithMockUser(roles="USER")
     @Test
     public void ReturnSuccessfulPageTest() throws Exception {
         mvc.perform(get("/hello"))
                 .andExpect(status().is2xxSuccessful());
     }
 
+    @WithMockUser(roles="USER")
     @Test
     public void ReturnClientErrorPageTest() throws Exception {
         mvc.perform(get("/hell"))

@@ -2,13 +2,12 @@ package com.tistory.itdar.springboot;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.SpringApplication;
-import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 /**
  * Main class
  * SpringBootApplication 어노테이션 위치부터 설정을 읽어간다.
  */
-@EnableJpaAuditing
+//@EnableJpaAuditing    // 최소 하나의 Entity 클래스가 필요함, @WebMcvTest 는 없어서 문제되어 지우고, JpaConfig 추가
 @SpringBootApplication
 public class Application {
 
