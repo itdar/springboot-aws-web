@@ -48,5 +48,11 @@ echo "> JAR_NAME: $JAR_NAME"
 
 # nohup을 통해서 터미널 닫아도 실행 유지되도록
 # 엠퍼샌드를 통해서 터미널 잡아놓지 않도록
-nohup java -jar $REPOSITORY/$JAR_NAME 2>&1 &
+# 스프링 설정파일 위치를 지정해서, 기본 옵션 application.properties 와 OAuth 설정인 application-oauth.properties 를 지정함
+# classpath 가 붙으면 jar 안에 있는 resources 디렉토리 기준으로 경로가 생성됨
+# application-oauth.properties 는 절대경로를 사용함. 외부에 파일이 있기 때문
+nohup java -jar \
+        -Dspring.config.location=classpath:/application.properties,/home/ec2-user/app/application-oauth.properties \
+        $REPOSITORY/$JAR_NAME 2>&1 &
+
 
