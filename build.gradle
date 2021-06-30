@@ -41,4 +41,6 @@ dependencies {
     // 스프링 시큐리티 테스트를 위한 도구 지원
     testCompile("org.springframework.security:spring-security-test")
 
+    compile("org.mariadb.jdbc:mariadb-java-client")
+
 }
