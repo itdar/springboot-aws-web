@@ -8,7 +8,7 @@ branches:   # 어느 브랜치가 푸시될 때 수행할 지 지정
     - master
 
 # Travis CI 서버의 Home
-cache:    # gradle을 통해 의존성을 받으면 해당 디렉토리를 캐싱해서 같은 의존성은 다음 배포 때부터 다시 받지 않도록 함
+cache:    # gradle 을 통해 의존성을 받으면 해당 디렉토리를 캐싱해서 같은 의존성은 다음 배포 때부터 다시 받지 않도록 함
   directories:
     - '$HOME/.m2/repository'
     - '$HOME/.gradle'
