@@ -26,13 +26,13 @@ fi
 echo "> 새 애플리케이션 배포"
 
 # 여러 jar 파일이 생길 것이기 때문에, tail -n 으로 가장 나중의 jar 파일(최신)을 변수에 저장한다.
-JAR_NAME=$(ls -tr $REPOSITORY/ | grep jar | tail -n 1)
+JAR_NAME=$(ls -tr $REPOSITORY/*.jar | tail -n 1)
 
 echo "> JAR_NAME: $JAR_NAME"
 
 echo "> $JAR_NAME 에 실행권한 추가"
 
-chmod +x $JAR_NAME
+sudo chmod +x $JAR_NAME
 
 echo "> $JAR_NAME 실행"
 
