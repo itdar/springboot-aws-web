@@ -39,6 +39,17 @@ deploy:
     on:
       all_branches: true
 
+  - provider: codedeploy
+    access_key_id: $AWS_ACCESS_KEY      # Travis repo settings 에 설정된 값
+    secret_access_key: $AWS_SECRET_KEY  # Travis repo settings
+    bucket: itdar-springboot-build      # S3 버킷
+    key: springboot-aws-web.zip         # 빌드 파일을 압축해서 전달
+    bundle_type: zip                    # 압축 확장자
+    application: springboot-aws-web     # 웹 콘솔에서 등록한 CodeDeploy 애플리케이션
+    deployment_group: springboot-aws-web-group # 웹 콘솔에서 등록한 CodeDeploy 배포 그룹
+    region: ap-northeast-2
+    wait-until-deployed: true
+
 # CI 실행 완료 시 메일로 알람
 notifications:
   email:

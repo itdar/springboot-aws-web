@@ -1,0 +1,9 @@
+
+# CodeDeploy 버전 (프로젝트 버전이 아니므로 0.0 외의 버전은 오류)
+version: 0.0
+os: linux
+files:
+  - source: /   # 코드디플로이에서 전달해준 파일 중 destination 으로 이동시킬 대상 지정, 루트경로(/) 지정은 전체 파일
+    destination: /home/ec2-user/app/step2/zip/    # 소스에서 지정된 파일 받을 위치, 이후 Jar 를 실행하는 등은 옮긴 파일로 실행
+    overwrite: yes
+
