@@ -3,13 +3,13 @@
 version: 0.0
 os: linux
 files:
-  - source: /   # 코드디플로이에서 전달해준 파일 중 destination 으로 이동시킬 대상 지정, 루트경로(/) 지정은 전체 파일
+  - source:  /    # 코드디플로이에서 전달해준 파일 중 destination 으로 이동시킬 대상 지정, 루트경로(/) 지정은 전체 파일
     destination: /home/ec2-user/app/step2/zip/    # 소스에서 지정된 파일 받을 위치, 이후 Jar 를 실행하는 등은 옮긴 파일로 실행
     overwrite: yes
 
 # Code Deploy 에서 EC2 서버로 넘겨준 파일들을 모두 ec2-user 권한을 갖도록 한다.
 permissions:
-  - object: \
+  - object: /
     pattern: "**"
     owner: ec2-user
     group: ec2-user

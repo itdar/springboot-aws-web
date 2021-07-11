@@ -28,10 +28,6 @@ before_deploy:  # Travis CI 는 S3로 특정 파일만 업로드가 안된다. (
   - cd before-deploy && zip -r before-deploy *    # before-deploy 로 이동 후 전체 압축, -r 통해서 재귀로 전체.
   - cd ../ && mkdir -p deploy         # 상위 디렉토리 이동 후 deploy 디렉토리 생성
   - mv before-deploy/before-deploy.zip deploy/springboot-aws-web.zip    # deploy로 zip 파일 이동
-  -
-#  - zip -r springboot-aws-web *   # 현재 위치의 모든 파일을 해당 이름으로 압축한다. (프로젝트 이름)
-#  - mkdir -p deploy               # deploy 라는 디렉토리를 Travis CI 가 실행 중인 위치에서 생성한다.
-#  - mv springboot-aws-web.zip deploy/springboot-aws-web.zip   # 압축한 파일을 deploy/ 로 이동
 
 # S3로 파일 업로드 혹은 CodeDeploy로 배포 등 외부 서비스와 연동될 행위들을 선언한다.
 deploy:
