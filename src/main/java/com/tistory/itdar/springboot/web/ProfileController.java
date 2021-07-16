@@ -16,6 +16,11 @@ public class ProfileController {
 
     @GetMapping("/profile")
     public String profile() {
+        // env.getActiveProfiles()
+        // -> 현재 실행중인 ActiveProfile 모두 가져온다
+        // -> 즉 real, oauth, real-db 등이 활성화되어있으면, 3개 모두 들어있음
+        // -> 여기서 real, real1, real2 모두 배포에 사용될 profile이라서 이 중 하나라도 있으면 그 값 반환
+        // -> 이번 무중단 배포에서는 real1 과 real2 만 사용되지만, step2를 다시 사용해 볼수도 있으니 real도 남긴다.
         List<String> profiles = Arrays.asList(env.getActiveProfiles());
         List<String> realProfiles = Arrays.asList("real", "real1", "real2");
 
