@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+## 엔진엑스가 바라보는 스프링 부트를 최신 버전으로 변경
+
 ABSPATH=$(readlink -f $0)
 ABSDIR=$(dirname $ABSPATH)
 source ${ABSDIR}/profile.sh
@@ -11,7 +13,6 @@ function switch_proxy() {
     echo "> Port 전환"
     # 하나의 문장을 만들어 파이프라인(|)으로 넘겨주기 위해 echo를 사용한다.
     # 엔진엑스가 변경할 프록시 주소를 생성함
-    #
     echo "set \$service_url http://127.0.0.1:${IDLE_PORT};" | sudo tee /etc/nginx/conf.d/service-url.inc
 
     echo "> 엔진엑스 Reload"

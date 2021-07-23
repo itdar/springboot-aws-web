@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+## 배포할 신규 버전 스프링부트 프로젝트를 stop.sh로 종료한 'profile'로 실행
+
 # 거의 기존 deploy.sh 와 유사한데,
 # 다른점은 IDLE_PROFILE 을 통해서 properties 파일 (application-$IDLE_PROFILE.properties)을 가져오고,
 # active profile을 지정하는 것 (-Dspring.profiles.active=$IDLE_PROFILE) 이 다름

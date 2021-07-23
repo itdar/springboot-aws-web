@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+## 기존 엔진엑스에 연결되어 있지 않지만, 실행 중이던 스프링부트 종료
+
 ABSPATH=$(readlink -f $0)
 # 현재 stop.sh 가 속해있는 경로를 찾는다.
 # 하나 더 아래 코드와 같이 profile.sh 경로를 찾기 위해 사용된다.

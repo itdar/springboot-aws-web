@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+## 다른 4개 스크립트 파일에서 공용으로 사용할 'profile'과 포트 체크 로직
+
 ## 쉬고 있는 profile 찾는 함수
 # real1이 사용중이면 real2가 쉬고 있고, 반대면 real1이 쉬는 중
 function find_idle_profile()
